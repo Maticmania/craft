@@ -1,11 +1,15 @@
 import React from "react";
+import logo from "../assets/images/craft logo.png";
 
 const Footer = () => {
   return (
     <footer className="py-12 bg-footer" id="contact">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 content space-y-12">
-            <h2 className="text-logo w-1/4 text-center">Craft</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-28 text-white w-full">
+      <div className="logo flex h-full items-center">
+            <img src={logo} className="h-[60px] sm:h-[80px] md:h-[100px]" />
+            <p className="text-logo text-4xl">Craft</p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-8 xl:gap-28 text-white w-full">
             <div>
             <ul className="space-y-2">
               <li>Shop</li>

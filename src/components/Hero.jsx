@@ -5,7 +5,6 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { GoDotFill } from "react-icons/go";
 import { IoMenu } from "react-icons/io5";
 
-
 const Hero = () => {
   const funitures = [
     { name: "Living Room Furniture" },
@@ -25,10 +24,18 @@ const Hero = () => {
           </div>
           <div className="hidden xl:block">
             <ul className="flex space-x-4 sm:space-x-6 font-light">
-              <li><a href="#">Home</a></li>
-              <li><a href="#contact">Contact Us</a></li>
-              <li><a href="#product">Shop</a></li>
-              <li><a href="#about">About</a></li>
+              <li>
+                <a href="#">Home</a>
+              </li>
+              <li>
+                <a href="#contact">Contact Us</a>
+              </li>
+              <li>
+                <a href="#product">Shop</a>
+              </li>
+              <li>
+                <a href="#about">About</a>
+              </li>
             </ul>
           </div>
           <div className="flex items-center space-x-2">
@@ -37,18 +44,18 @@ const Hero = () => {
               placeholder="Search"
               className="w-[100px] sm:w-[150px] md:w-[180px] px-2 sm:px-4 py-1 sm:py-[6px] rounded bg-white/50 text-white hidden xl:block"
             />
-            <div className="flex backdrop-blur-lg bg-white/50 px-2 sm:px-4 py-1 sm:py-2 rounded">
+            <div className="flex backdrop-blur-lg bg-white/50 px-2 sm:px-4 py-2 sm:py-2 rounded gap-4">
               <span className="mr-2 sm:mr-4 relative">
                 <a href="/cart">
-                <MdOutlineShoppingCart className="text-lg sm:text-xl" />
-                <span className=" absolute -top-1 -right-1 text-red-500">
-                  <GoDotFill/>
-                </span>
+                  <MdOutlineShoppingCart className="text-2xl sm:text-2xl" />
+                  <span className=" absolute -top-1 -right-1 text-red-500">
+                    <GoDotFill />
+                  </span>
                 </a>
               </span>
               <span>
-                <FaUserAlt className="text-lg sm:text-xl hidden xl:block" />
-                <IoMenu className="text-lg sm:text-xl xl:hidden block"/>
+                <FaUserAlt className="text-2xl sm:text-2xl hidden xl:block" />
+                <IoMenu className="text-3xl sm:text-2xl xl:hidden block" />
               </span>
             </div>
           </div>
@@ -61,17 +68,30 @@ const Hero = () => {
             Experience the perfect harmony of craftsmanship and modern design.
           </p>
           <div className="flex flex-wrap gap-2">
-            <button className="p-2 sm:p-3 px-3 sm:px-4 bg-[#564E3B] text-white font-medium rounded">
+            <button className="p-2 sm:p-3 px-3 sm:px-4 bg-[#564E3B] text-white font-medium rounded hidden md:block">
               All Furniture
             </button>
             {funitures.map((f, i) => (
               <button
                 key={i}
-                className="p-2 sm:p-3 hidden sm:block bg-white text-[#564E3B] font-medium rounded"
+                className="p-2 sm:p-3 sm:block bg-white text-[#564E3B] font-medium rounded hidden md:block"
               >
                 {f.name}
               </button>
             ))}
+              
+              <select name="funitures" className="p-3 sm:p-3 sm:hidden bg-[#564E3B] text-white font-medium rounded">
+                  <option value="1" className="bg-white text-[#564E3B]">All Furniture</option>
+                 { funitures.map((f, i) => (
+              <option
+                key={i}
+                className="p-3 sm:p-3 bg-white text-[#564E3B] font-medium rounded"
+              >
+                {f.name}
+              </option>
+            ))}
+              </select>
+            
           </div>
         </div>
       </div>

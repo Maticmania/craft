@@ -5,7 +5,7 @@ import logo from "../assets/images/craft logo.png";
 
 const Header = () => {
   return (
-    <header className="bg-[#333333] text-white py-4 px-12">
+    <header className="bg-[#333333] text-white py-4 px-4">
       <div className="flex justify-between items-center">
         <a href="/" className="flex items-center">
           <img src={logo} className="h-[60px] sm:h-[80px] md:h-[100px]" />
