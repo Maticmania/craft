@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+  font-family: "Work Sans", sans-serif;
+}
+html{
+  scroll-behavior: smooth;
+}
+
+.hero-bg {
+  position: relative;
+  background-image: url(./assets/images/Heroimage.jpeg);
+  background-position: center;
+  background-size: cover;
+  height: 100vh; /* default to full height on mobile */
+}
+
+@media (min-width: 768px) {
+  .hero-bg {
+    height: 850px; /* height on tablets and larger screens */
+  }
+}
+
+.text-logo {
+  font-family: Lobster, sans-serif;
+  font-size: 24px;
+  color: white;
+}
+
+@media (min-width: 640px) {
+  .text-logo {
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 768px) {
+  .text-logo {
+    font-size: 48px;
+  }
+}
+
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.663);
+  z-index: 1;
+}
+
+.content-menu {
+  position: relative;
+  z-index: 2;
+  color: white;
+  height: 60px;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+
+.bg-footer {
+  background-image: url('./assets/images/footer.jpeg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.bg-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.463);
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  color: white;
+}
