@@ -4,7 +4,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { GoDotFill } from "react-icons/go";
 import { IoMenu } from "react-icons/io5";
-import { useCart } from "../CartContext";
+import { useCart } from "../context/CartContext";
 
 const Hero = () => {
   const funitures = [

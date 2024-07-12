@@ -1,5 +1,5 @@
 import React from "react";
-import { useCart } from "../CartContext";
+import { useCart } from "../context/CartContext";
 import data from "../db/Productdb";
 import Header from "./Header";
 import Product from "../pages/Product";

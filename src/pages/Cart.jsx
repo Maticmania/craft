@@ -1,5 +1,5 @@
 import React from "react";
-import { useCart } from "../CartContext";
+import { useCart } from "../context/CartContext";
 import Header from "../components/Header";
 import { MdOutlineShoppingCart } from "react-icons/md";
 
@@ -61,46 +61,52 @@ const Cart = () => {
               </a>
             </div>
           ) : (
-            cart.map((item) => (
-              <div
-                key={item.id}
-                className="flex justify-between items-center bg-white min-h-[150px] sm:min-h-[150px] md:min-h-[150px] py-2 lg:h-[346px] px-2 sm:px-4"
-              >
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="h-[90%] sm:h-[90%] md:h-[90%] object-cover w-[30%] xl:w-1/3"
-                />
-                <div className="flex-1 mx-2 sm:mx-4">
-                  <h2 className="text-base sm:text-lg md:text-xl font-medium leading-tight">
-                    {item.name}
-                  </h2>
-                  <p className="text-xs sm:text-sm md:text-base font-normal">
-                    {item.desc}
-                  </p>
-                  <div className="flex items-center justify-between w-full gap-2 sm:w-4/5 md:w-1/2 mt-2">
-                    <div className="flex items-center text-lg space-x-4 lg:space-x-8 lg:text-2xl">
-                      <button className="text-[#333333]" onClick={() => decreaseQuantity(item.id)}>
-                        -
-                      </button>
-                      <span className="text-lg">{item.quantity}</span>
-                      <button className="" onClick={() => increaseQuantity(item.id)}>
-                        +
-                      </button>
-                    </div>
-                    <p className="text-xs sm:text-base md:text-2xl text-[#6C0345] font-medium">
-                      &#x20A6;{(item.price * item.quantity).toLocaleString()}
-                    </p>
-                  </div>
-                </div>
-                <button
-                  onClick={() => removeFromCart(item.id)}
-                  className="text-red-500 hover:text-red-700 h-full text-xs md:text-lg"
+            cart.map((item) => {
+              const image = `/api/images/${item.photos[0]?.url || ""}`; // Adjust this line based on the structure of photos
+              return (
+                <div
+                  key={item.id}
+                  className="flex justify-between items-center bg-white min-h-[150px] sm:min-h-[150px] md:min-h-[150px] py-2 lg:h-[346px] px-2 sm:px-4"
                 >
-                  Remove
-                </button>
-              </div>
-            ))
+                  <img
+                    src={image}
+                    alt={item.name}
+                    className="h-[90%] sm:h-[90%] md:h-[90%] object-cover w-[30%] xl:w-1/3"
+                  />
+                  <div className="flex-1 mx-2 sm:mx-4">
+                    <h2 className="text-base sm:text-lg md:text-xl font-medium leading-tight">
+                      {item.name}
+                    </h2>
+                    <p className="text-xs sm:text-sm md:text-base font-normal">
+                      {item.description}
+                    </p>
+                    <div className="flex items-center justify-between w-full gap-2 sm:w-4/5 md:w-1/2 mt-2">
+                      <div className="flex items-center text-lg space-x-4 lg:space-x-8 lg:text-2xl">
+                        <button
+                          className="text-[#333333]"
+                          onClick={() => decreaseQuantity(item.id)}
+                        >
+                          {item.quantity === 1 ? null : <span>-</span>}
+                        </button>
+                        <span className="text-lg">{item.quantity}</span>
+                        <button onClick={() => increaseQuantity(item.id)}>
+                          +
+                        </button>
+                      </div>
+                      <p className="text-xs sm:text-base md:text-2xl text-[#6C0345] font-medium">
+                        &#x20A6;{(item.price * item.quantity).toLocaleString()}
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => removeFromCart(item.id)}
+                    className="text-red-500 hover:text-red-700 h-full text-xs md:text-lg"
+                  >
+                    Remove
+                  </button>
+                </div>
+              );
+            })
           )}
         </div>
 

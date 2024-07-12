@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./Header";
 import { FaCheckCircle } from "react-icons/fa";
+import { useCart } from "../context/CartContext";
 
 const Success = () => {
+  const { dispatch } = useCart();
+  const clearCart = () => {
+    dispatch({ type: "CLEAR_CART" });
+  };
+
   return (
     <div className="bg-[#F1F1F2] min-h-screen">
       <Header />
@@ -42,8 +48,11 @@ const Success = () => {
             </div>
           </div>
           <div className="flex justify-center mb-6">
-            <a href="/">
-              <button className="px-6 py-2 bg-[#564E3B] text-white rounded">
+            <a href="/product">
+              <button
+                onClick={clearCart}
+                className="px-6 py-2 bg-[#564E3B] text-white rounded"
+              >
                 Continue Shopping
               </button>
             </a>

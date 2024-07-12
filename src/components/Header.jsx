@@ -3,7 +3,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import logo from "../assets/images/craft logo.png";
 import { GoDotFill } from "react-icons/go";
-import { useCart } from "../CartContext";
+import { useCart } from "../context/CartContext";
 
 const Header = () => {
   const {
@@ -23,7 +23,7 @@ const Header = () => {
           <a href="/" className="hover:text-gray-400">
             Contact Us
           </a>
-          <a href="/" className="hover:text-gray-400">
+          <a href="/product" className="hover:text-gray-400">
             Shop
           </a>
           <a href="/" className="hover:text-gray-400">
@@ -33,7 +33,7 @@ const Header = () => {
         <div className="flex items-center space-x-2  bg-white/20 rounded">
           <div className="flex items-center p-2 rounded-md relative">
             <a href="/cart">
-                  <MdOutlineShoppingCart className="text-xxl sm:text-2xl" />
+                  <MdOutlineShoppingCart className="text-2xl sm:text-2xl" />
                   <span className=" absolute top-1 right-1 text-red-500">
                     {
                       cart.length === 0 ? null :

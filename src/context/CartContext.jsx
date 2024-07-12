@@ -1,9 +1,10 @@
-import React, { createContext, useReducer, useContext, useEffect } from 'react';
+import React, { createContext, useReducer, useContext } from 'react';
 
 const CartContext = createContext();
 
 const initialState = {
   cart: JSON.parse(localStorage.getItem('cart')) || [],
+  successfulCheckout: false, // Add this line
 };
 
 const cartReducer = (state, action) => {
@@ -37,10 +38,15 @@ const cartReducer = (state, action) => {
     case 'CLEAR_CART':
       updatedCart = [];
       break;
+    case 'SET_SUCCESSFUL_CHECKOUT': // Add this case
+      return {
+        ...state,
+        successfulCheckout: action.payload,
+      };
     default:
       return state;
   }
-  
+
   localStorage.setItem('cart', JSON.stringify(updatedCart));
   return { ...state, cart: updatedCart };
 };
