@@ -50,7 +50,7 @@ const Product = () => {
         Our Product
       </h1>
       <div className="px-4 sm:px-8 md:px-16 lg:px-20 py-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {products.map((product) => {
             const isInCart = state.cart.some(item => item.id === product.id);
             const price = product.current_price[0]?.NGN[0] || 0; // Adjust this line based on the structure of current_price
@@ -82,7 +82,7 @@ const Product = () => {
               </div>
             );
           })}
-        </div>
+        </div> */}
       </div>
     </div>
   );
