@@ -86,3 +86,7 @@ html{
   z-index: 2;
   color: white;
 }
+
+body{
+  background-color: #f1f1f2;
+}

@@ -2,8 +2,13 @@ import React from "react";
 import { FaUserAlt } from "react-icons/fa";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import logo from "../assets/images/craft logo.png";
+import { GoDotFill } from "react-icons/go";
+import { useCart } from "../CartContext";
 
 const Header = () => {
+  const {
+    state: { cart },
+  } = useCart();
   return (
     <header className="bg-[#333333] text-white py-4 px-4">
       <div className="flex justify-between items-center">
@@ -26,10 +31,16 @@ const Header = () => {
           </a>
         </nav>
         <div className="flex items-center space-x-2  bg-white/20 rounded">
-          <div className="flex items-center p-2 rounded-md">
+          <div className="flex items-center p-2 rounded-md relative">
             <a href="/cart">
-              <MdOutlineShoppingCart className="text-xl" />
-            </a>
+                  <MdOutlineShoppingCart className="text-xxl sm:text-2xl" />
+                  <span className=" absolute top-1 right-1 text-red-500">
+                    {
+                      cart.length === 0 ? null :
+                    <GoDotFill />
+                    }
+                  </span>
+                </a>
           </div>
           <div className="flex items-center p-2 rounded-md">
             <FaUserAlt className="text-xl" />

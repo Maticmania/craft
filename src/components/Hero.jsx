@@ -4,6 +4,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { GoDotFill } from "react-icons/go";
 import { IoMenu } from "react-icons/io5";
+import { useCart } from "../CartContext";
 
 const Hero = () => {
   const funitures = [
@@ -13,6 +14,9 @@ const Hero = () => {
     { name: "Office Furniture" },
     { name: "Outdoor Furniture" },
   ];
+  const {
+    state: { cart },
+  } = useCart();
 
   return (
     <div className="hero-bg h-[100vh] md:h-[850px]" id="#">
@@ -49,7 +53,10 @@ const Hero = () => {
                 <a href="/cart">
                   <MdOutlineShoppingCart className="text-2xl sm:text-2xl" />
                   <span className=" absolute -top-1 -right-1 text-red-500">
+                    {
+                      cart.length === 0 ? null :
                     <GoDotFill />
+                    }
                   </span>
                 </a>
               </span>
@@ -79,19 +86,23 @@ const Hero = () => {
                 {f.name}
               </button>
             ))}
-              
-              <select name="funitures" className="p-3 sm:p-3 sm:hidden bg-[#564E3B] text-white font-medium rounded">
-                  <option value="1" className="bg-white text-[#564E3B]">All Furniture</option>
-                 { funitures.map((f, i) => (
-              <option
-                key={i}
-                className="p-3 sm:p-3 bg-white text-[#564E3B] font-medium rounded"
-              >
-                {f.name}
+
+            <select
+              name="funitures"
+              className="p-3 sm:p-3 sm:hidden bg-[#564E3B] text-white font-medium rounded"
+            >
+              <option value="1" className="bg-white text-[#564E3B]">
+                All Furniture
               </option>
-            ))}
-              </select>
-            
+              {funitures.map((f, i) => (
+                <option
+                  key={i}
+                  className="p-3 sm:p-3 bg-white text-[#564E3B] font-medium rounded"
+                >
+                  {f.name}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
       </div>
