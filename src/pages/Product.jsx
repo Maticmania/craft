@@ -17,8 +17,8 @@ const Product = () => {
             reverse_sort: false,
             page: 1,
             size: 10,
-            Appid: '0R9IWWN8EN6MGTO',
-            Apikey: '6e4f95a94e32403caaa6db8d45e5dbb520240712143047980526',
+            Appid: "0R9IWWN8EN6MGTO",
+            Apikey: "6e4f95a94e32403caaa6db8d45e5dbb520240712143047980526",
           },
         });
         setProducts(response.data.items);
@@ -43,8 +43,6 @@ const Product = () => {
   if (error) {
     return <p>Error loading products: {error.message}</p>;
   }
-  console.log(products);
-
 
   return (
     <div className="py-8 bg-[#F1F1F2]" id="product">
