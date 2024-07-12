@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useCart } from "../context/CartContext";
 
 const Product = () => {
@@ -8,20 +7,25 @@ const Product = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // const url = import.meta.env.VITE_REACT_APP_API
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("/api/products", {
-          params: {
-            organization_id: '4fafd488408b4f84b93e7fcdfe67a60c',
-            reverse_sort: false,
-            page: 1,
-            size: 10,
-            Appid: "0R9IWWN8EN6MGTO",
-            Apikey: "6e4f95a94e32403caaa6db8d45e5dbb520240712143047980526",
+        const response = await fetch(import.meta.env.VITE_REACT_APP_API, {
+          mode:  'cors',
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
           },
         });
-        setProducts(response.data.items);
+        console.log(response);
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setProducts(data.items);
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -50,7 +54,7 @@ const Product = () => {
         Our Product
       </h1>
       <div className="px-4 sm:px-8 md:px-16 lg:px-20 py-8">
-        {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {products.map((product) => {
             const isInCart = state.cart.some(item => item.id === product.id);
             const price = product.current_price[0]?.NGN[0] || 0; // Adjust this line based on the structure of current_price
@@ -82,7 +86,7 @@ const Product = () => {
               </div>
             );
           })}
-        </div> */}
+        </div>
       </div>
     </div>
   );
