@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/images/craft logo.png";
 import { FaUserAlt } from "react-icons/fa";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { GoDotFill } from "react-icons/go";
-import { IoMenu } from "react-icons/io5";
+import { IoMenu, IoClose } from "react-icons/io5";
 import { useCart } from "../context/CartContext";
 
 const Hero = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
   const funitures = [
     { name: "Living Room Furniture" },
     { name: "Dining Room Furniture" },
@@ -17,6 +18,10 @@ const Hero = () => {
   const {
     state: { cart },
   } = useCart();
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   return (
     <div className="hero-bg h-[100vh] md:h-[850px]" id="#">
@@ -52,21 +57,41 @@ const Hero = () => {
               <span className="mr-2 sm:mr-4 relative">
                 <a href="/cart">
                   <MdOutlineShoppingCart className="text-2xl sm:text-2xl" />
-                  <span className=" absolute -top-1 -right-1 text-red-500">
-                    {
-                      cart.length === 0 ? null :
-                    <GoDotFill />
-                    }
+                  <span className="absolute -top-1 -right-1 text-red-500">
+                    {cart.length === 0 ? null : <GoDotFill />}
                   </span>
                 </a>
               </span>
               <span>
                 <FaUserAlt className="text-2xl sm:text-2xl hidden xl:block" />
-                <IoMenu className="text-3xl sm:text-2xl xl:hidden block" />
+                <button
+                  className="text-3xl sm:text-2xl xl:hidden block"
+                  onClick={toggleMenu}
+                >
+                  {menuOpen ? <IoClose /> : <IoMenu />}
+                </button>
               </span>
             </div>
           </div>
         </header>
+        {menuOpen && (
+          <div className="xl:hidden bg-white text-black p-4 rounded shadow-md">
+            <ul className="flex flex-col space-y-2 font-light">
+              <li>
+                <a href="#" onClick={toggleMenu}>Home</a>
+              </li>
+              <li>
+                <a href="#contact" onClick={toggleMenu}>Contact Us</a>
+              </li>
+              <li>
+                <a href="#product" onClick={toggleMenu}>Shop</a>
+              </li>
+              <li>
+                <a href="#about" onClick={toggleMenu}>About</a>
+              </li>
+            </ul>
+          </div>
+        )}
         <div className="content space-y-2 sm:space-y-2">
           <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold">
             CRAFTED FOR COMFORT, DESIGNED FOR LIFE

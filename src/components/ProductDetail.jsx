@@ -6,14 +6,14 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Header from "./Header";
 import { GoDotFill } from "react-icons/go";
-import Product from "../pages/Product";
-
+import ProductCard from "../components/ProductCard";
 
 const ProductDetail = () => {
   const { productId } = useParams();
   const { state, dispatch } = useCart();
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
+  const [relatedProducts, setRelatedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -39,6 +39,22 @@ const ProductDetail = () => {
     fetchProduct();
   }, [productId]);
 
+  useEffect(() => {
+    const fetchRelatedProducts = async () => {
+      try {
+        const response = await fetch(
+          `/api/products?organization_id=${organId}&size=6&Appid=${Appid}&Apikey=${Apikey}`
+        );
+        const data = await response.json();
+        setRelatedProducts(data.items);
+      } catch (error) {
+        setError(error);
+      }
+    };
+
+    fetchRelatedProducts();
+  }, []);
+
   const addToCart = (product) => {
     dispatch({ type: "ADD_TO_CART", payload: product });
   };
@@ -60,10 +76,9 @@ const ProductDetail = () => {
     return <p>Product not found</p>;
   }
 
-  const price = product.current_price[0]?.NGN[0] || product.current_price; // Adjust this line based on the structure of current_price
-  const isInCart = state.cart.some(item => item.id === product.id);
+  const price = product.current_price[0]?.NGN[0] || product.current_price;
+  const isInCart = state.cart.some((item) => item.id === product.id);
 
-  console.log(product);
   return (
     <>
       <Header />
@@ -121,7 +136,7 @@ const ProductDetail = () => {
                 {product.photos.slice(0, 3).map((photo, index) => (
                   <img
                     key={index}
-                    src={`/api/images/${photo.url || ""}`} // Adjust this line based on the structure of photos
+                    src={`/api/images/${photo.url || ""}`}
                     alt={product.name}
                     className="h-[300px] w-full object-contain"
                   />
@@ -134,20 +149,22 @@ const ProductDetail = () => {
                 {product.description || "No description available"}
               </p>
               <p className="text-lg mb-4 flex items-center">
-              <GoDotFill className="text-green-600" />
-              Available({product.available_quantity || "1"})
+                <GoDotFill className="text-green-600" />
+                Available({product.available_quantity || "1"})
               </p>
               <p className="text-2xl font-bold text-[#6C0345] mb-4">
                 &#x20A6;{price.toLocaleString()}
               </p>
               <div className="flex flex-col  xl:justify-between items-center gap-4">
                 <button
-                    className={`p-3 w-full font-medium rounded ${isInCart ? 'bg-gray-500 text-white' : 'bg-[#564E3B] text-white'}`}
-                    onClick={() => addToCart({ ...product, price })}
-                    disabled={isInCart}
+                  className={`p-3 w-full font-medium rounded ${
+                    isInCart ? "bg-gray-500 text-white" : "bg-[#564E3B] text-white"
+                  }`}
+                  onClick={() => addToCart({ ...product, price })}
+                  disabled={isInCart}
                 >
-                    {isInCart ? 'Added' : 'Add to cart'}
-                    </button>
+                  {isInCart ? "Added" : "Add to cart"}
+                </button>
                 <button
                   className="w-full px-4 py-3 font-medium rounded bg-[#6C0345] text-white"
                   onClick={() => handleBuyNow({ ...product, price })}
@@ -158,9 +175,20 @@ const ProductDetail = () => {
             </div>
           </div>
         </div>
-
         <hr />
-        <Product/>
+        <div className="px-4 sm:px-8 xl:px-16 lg:px-20 py-8">
+          <h2 className="text-2xl font-bold my-4">Related Products</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {relatedProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                isInCart={state.cart.some((item) => item.id === product.id)}
+                addToCart={addToCart}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </>
   );
