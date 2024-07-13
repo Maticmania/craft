@@ -86,9 +86,9 @@ const Cart = () => {
                           className="text-[#333333]"
                           onClick={() => decreaseQuantity(item.id)}
                         >
-                          {item.quantity === 1 ? null : <span>-</span>}
+                          {item.quantity === 1 ? <button disabled='true'>-</button> : <span>-</span>}
                         </button>
-                        <span className="text-lg">{item.quantity}</span>
+                        <span className="text-lg border px-2">{item.quantity}</span>
                         <button onClick={() => increaseQuantity(item.id)}>
                           +
                         </button>

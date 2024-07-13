@@ -49,7 +49,7 @@ const ProductDetail = () => {
   };
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p className="min-h-screen text-xl flex items-center justify-center font-semibold">Loading...</p>;
   }
 
   if (error) {
