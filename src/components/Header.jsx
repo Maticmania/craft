@@ -19,23 +19,23 @@ const Header = () => {
   return (
     <header className="bg-[#333333] text-white py-4 px-4">
       <div className="flex justify-between items-center">
-        <a href="/" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <img src={logo} className="h-[60px] sm:h-[80px] md:h-[100px]" />
           <p className="text-logo">Craft</p>
-        </a>
+        </Link>
         <nav className="hidden md:flex space-x-6">
-          <a href="/" className="hover:text-gray-400">
+          <Link to="/" className="hover:text-gray-400">
             Home
-          </a>
-          <a href="/" className="hover:text-gray-400">
+          </Link>
+          <Link to="/" className="hover:text-gray-400">
             Contact Us
-          </a>
-          <a href="/product" className="hover:text-gray-400">
+          </Link>
+          <Link to="/product" className="hover:text-gray-400">
             Shop
-          </a>
-          <a href="/" className="hover:text-gray-400">
+          </Link>
+          <Link to="/" className="hover:text-gray-400">
             About
-          </a>
+          </Link>
         </nav>
         <div className="flex items-center space-x-2 bg-white/20 rounded">
           <div className="flex items-center p-2 rounded-md relative">
@@ -61,24 +61,24 @@ const Header = () => {
         <div className="md:hidden bg-white text-black p-4 rounded shadow-md mt-2">
           <ul className="flex flex-col space-y-2 font-light">
             <li>
-              <a href="/" className="hover:text-gray-400" onClick={toggleMenu}>
+              <Link to="/" className="hover:text-gray-400" onClick={toggleMenu}>
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/" className="hover:text-gray-400" onClick={toggleMenu}>
+              <Link to="/" className="hover:text-gray-400" onClick={toggleMenu}>
                 Contact Us
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/product" className="hover:text-gray-400" onClick={toggleMenu}>
+              <Link to="/product" className="hover:text-gray-400" onClick={toggleMenu}>
                 Shop
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/" className="hover:text-gray-400" onClick={toggleMenu}>
+              <Link to="/" className="hover:text-gray-400" onClick={toggleMenu}>
                 About
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
