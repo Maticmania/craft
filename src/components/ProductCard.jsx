@@ -8,7 +8,7 @@ const ProductCard = ({ product, isInCart, addToCart }) => {
   return (
     <div
       key={product.id}
-      className="bg-white h-[380px] flex flex-col p-4 rounded-md justify-between"
+      className="bg-white min-h-[380px] flex flex-col p-4 rounded-md justify-between"
     >
       <Link to={`/product/${product.id}`}>
         <img
