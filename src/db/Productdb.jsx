@@ -121,7 +121,7 @@ const data = [
     id: 113,
     name: "Dinning Table",
     desc: "Perfect for family, this table extends to accommodate more guests.",
-    price: 259999,
+    price: 250999,
     image: product13,
     quantity: 2,
   },

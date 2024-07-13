@@ -8,18 +8,23 @@ const Product = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // const url = import.meta.env.VITE_REACT_APP_API
+  const Appid = import.meta.env.VITE_REACT_APP_APPID;
+  const Apikey = import.meta.env.VITE_REACT_APP_APIKEY;
+  const organId = import.meta.env.VITE_REACT_APP_ORGANIZATIONID;
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(import.meta.env.VITE_REACT_APP_API, {
-          mode:  'cors',
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-        });
-        console.log(response);
+        const response = await fetch(
+          `/api/products?organization_id=${organId}&Appid=${Appid}&Apikey=${Apikey}`,
+          {
+            mode: "cors",
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -35,10 +40,10 @@ const Product = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [Appid, Apikey, organId]);
 
   const addToCart = (product) => {
-    dispatch({ type: 'ADD_TO_CART', payload: product });
+    dispatch({ type: "ADD_TO_CART", payload: product });
   };
 
   if (loading) {
@@ -73,7 +78,9 @@ const Product = () => {
                     className="h-[240px] w-full object-cover rounded-lg"
                   />
                 </Link>
-                <p className="text-center">{product.description || 'No description available'}</p>
+                <Link to={`/product/${product.id}`}>
+                  <p className="text-center">{product.description || 'No description available'}</p>
+                </Link>
                 <div className="flex justify-between items-center">
                   <button
                     className={`px-4 p-3 font-medium rounded ${isInCart ? 'bg-gray-500 text-white' : 'bg-[#564E3B] text-white'}`}
