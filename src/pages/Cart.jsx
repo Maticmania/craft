@@ -55,11 +55,11 @@ const Cart = () => {
                 <MdOutlineShoppingCart className="" />
               </span>
               <h2 className="text-2xl font-medium mb-4">Your cart is empty</h2>
-              <a href="/product">
+              <Link to="/product">
                 <button className="px-6 py-2 bg-[#564E3B] text-white rounded">
                   Start Shopping
                 </button>
-              </a>
+              </Link>
             </div>
           ) : (
             cart.map((item) => {

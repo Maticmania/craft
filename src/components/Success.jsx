@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Header from "./Header";
 import { FaCheckCircle } from "react-icons/fa";
 import { useCart } from "../context/CartContext";
+import { Link } from "react-router-dom";
 
 const Success = () => {
   const { dispatch } = useCart();
@@ -48,14 +49,14 @@ const Success = () => {
             </div>
           </div>
           <div className="flex justify-center mb-6">
-            <a href="/product">
+            <Link to="/product">
               <button
                 onClick={clearCart}
                 className="px-6 py-2 bg-[#564E3B] text-white rounded"
               >
                 Continue Shopping
               </button>
-            </a>
+            </Link>
           </div>
           <div className="text-center">
             <p className="text-sm mb-1">Need help?</p>
