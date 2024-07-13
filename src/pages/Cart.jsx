@@ -69,15 +69,22 @@ const Cart = () => {
                   key={item.id}
                   className="flex justify-between items-center bg-white min-h-[150px] sm:min-h-[150px] md:min-h-[150px] py-2 lg:h-[346px] px-2 sm:px-4"
                 >
-                  <img
-                    src={image}
-                    alt={item.name}
-                    className="h-[90%] sm:h-[90%] md:h-[90%] object-cover w-[30%] xl:w-1/3"
-                  />
+                  <Link
+                    to={`/product/${item.id}`}
+                    className="h-[90%] sm:h-[90%] md:h-[90%] w-[30%] xl:w-1/3"
+                  >
+                    <img
+                      src={image}
+                      alt={item.name}
+                      className="h-full object-cover w-full"
+                    />
+                  </Link>
                   <div className="flex-1 mx-2 sm:mx-4">
-                    <h2 className="text-base sm:text-lg md:text-xl font-medium leading-tight">
-                      {item.name}
-                    </h2>
+                    <Link to={`/product/${item.id}`}>
+                      <h2 className="text-base sm:text-lg md:text-xl font-medium leading-tight">
+                        {item.name}
+                      </h2>
+                    </Link>
                     <p className="text-xs sm:text-sm md:text-base font-normal">
                       {item.description}
                     </p>
@@ -87,9 +94,15 @@ const Cart = () => {
                           className="text-[#333333]"
                           onClick={() => decreaseQuantity(item.id)}
                         >
-                          {item.quantity === 1 ? <button disabled='true'>-</button> : <span>-</span>}
+                          {item.quantity === 1 ? (
+                            <button disabled="true">-</button>
+                          ) : (
+                            <span>-</span>
+                          )}
                         </button>
-                        <span className="text-lg border px-2">{item.quantity}</span>
+                        <span className="text-lg border px-2">
+                          {item.quantity}
+                        </span>
                         <button onClick={() => increaseQuantity(item.id)}>
                           +
                         </button>
