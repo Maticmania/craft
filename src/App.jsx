@@ -7,6 +7,7 @@ import Checkout from "./pages/Checkout";
 import Success from "./components/Success";
 import ProductPage from "./components/ProductPage";
 import { useCart } from "./context/CartContext";
+import ProductDetail from "./components/ProductDetail";
 
 function App() {
   const {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/product" element={<ProductPage />} />
+          <Route path="/product/:productId" element={<ProductDetail/>} />
           <Route
             path="/checkout"
             element={

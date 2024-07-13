@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useCart } from "../context/CartContext";
+import { Link } from "react-router-dom";
 
 const Product = () => {
   const { state, dispatch } = useCart();
@@ -57,19 +58,21 @@ const Product = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {products.map((product) => {
             const isInCart = state.cart.some(item => item.id === product.id);
-            const price = product.current_price[0]?.NGN[0] || 0; // Adjust this line based on the structure of current_price
-            const image = `/api/images/${product.photos[0]?.url || ''}`; // Adjust this line based on the structure of photos
+            const price = product.current_price[0]?.NGN[0] || 0;
+            const image = `/api/images/${product.photos[0]?.url || ''}`;
 
             return (
               <div
                 key={product.id}
                 className="bg-white h-[380px] flex flex-col p-4 rounded-md justify-between"
               >
-                <img
-                  src={image}
-                  alt={product.name}
-                  className="h-[240px] w-full object-cover rounded-lg"
-                />
+                 <Link to={`/product/${product.id}`}>
+                  <img
+                    src={image}
+                    alt={product.name}
+                    className="h-[240px] w-full object-cover rounded-lg"
+                  />
+                </Link>
                 <p className="text-center">{product.description || 'No description available'}</p>
                 <div className="flex justify-between items-center">
                   <button
