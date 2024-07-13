@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useCart } from "../context/CartContext";
-import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 
 const Product = () => {

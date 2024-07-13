@@ -5,7 +5,7 @@ import { IoMenu, IoClose } from "react-icons/io5";
 import logo from "../assets/images/craft logo.png";
 import { GoDotFill } from "react-icons/go";
 import { useCart } from "../context/CartContext";
-
+import { Link } from "react-router-dom";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const {
@@ -39,12 +39,12 @@ const Header = () => {
         </nav>
         <div className="flex items-center space-x-2 bg-white/20 rounded">
           <div className="flex items-center p-2 rounded-md relative">
-            <a href="/cart">
+            <Link to="/cart">
               <MdOutlineShoppingCart className="text-2xl sm:text-2xl" />
               <span className="absolute top-1 right-1 text-red-500">
                 {cart.length === 0 ? null : <GoDotFill />}
               </span>
-            </a>
+            </Link>
           </div>
           <div className="flex items-center p-2 rounded-md">
             <FaUserAlt className="text-xl" />

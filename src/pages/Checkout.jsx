@@ -5,6 +5,7 @@ import { FaArrowsRotate } from "react-icons/fa6";
 import { IoLogoPaypal } from "react-icons/io5";
 import { useCart } from "../context/CartContext";
 import Cart from "./Cart";
+import { Link } from "react-router-dom";
 
 const Checkout = () => {
   const {
@@ -122,14 +123,14 @@ const Checkout = () => {
                     />
                   </div>
                 </div>
-                <a href="/success">
+                <Link to="/success">
                   <button
                     // onClick={clearCart}
                     className="p-3 bg-[#6C584C] text-white rounded w-full"
                   >
                     Make Payment
                   </button>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

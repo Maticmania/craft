@@ -2,6 +2,7 @@ import React from "react";
 import { useCart } from "../context/CartContext";
 import Header from "../components/Header";
 import { MdOutlineShoppingCart } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const {
@@ -142,11 +143,11 @@ const Cart = () => {
                     </span>
                   </div>
                 </div>
-                <a href="/checkout">
+                <Link to="/checkout">
                   <button className="mt-4 w-full bg-[#564E3B] text-white py-2 rounded-lg">
                     Proceed to Checkout
                   </button>
-                </a>
+                </Link>
               </div>
             </div>
           </>

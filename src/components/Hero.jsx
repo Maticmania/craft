@@ -5,6 +5,7 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { GoDotFill } from "react-icons/go";
 import { IoMenu, IoClose } from "react-icons/io5";
 import { useCart } from "../context/CartContext";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -55,12 +56,12 @@ const Hero = () => {
             />
             <div className="flex backdrop-blur-lg bg-white/50 px-2 sm:px-4 py-2 sm:py-2 rounded gap-4">
               <span className="mr-2 sm:mr-4 relative">
-                <a href="/cart">
+                <Link to="/cart">
                   <MdOutlineShoppingCart className="text-2xl sm:text-2xl" />
                   <span className="absolute -top-1 -right-1 text-red-500">
                     {cart.length === 0 ? null : <GoDotFill />}
                   </span>
-                </a>
+                </Link>
               </span>
               <span>
                 <FaUserAlt className="text-2xl sm:text-2xl hidden xl:block" />
